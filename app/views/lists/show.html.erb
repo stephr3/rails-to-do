@@ -11,6 +11,11 @@
         <%= link_to "Delete", list_task_path(@list, task),
                                 :data => {:confirm => "Are you sure?",
                                           :method => "delete"} %>
+
+          <%= form_for [@list, task] do |f| %>
+            <%= f.hidden_field :done, :value => !task.done %>
+            <%= f.submit 'Done!' %>
+          <% end %>
       </li>
     <% end %>
   </ul>
@@ -18,9 +23,19 @@
   <p>There are no tasks yet!</p>
 <% end %>
 
+<h3>Done Tasks:</h3>
+<ul>
+  <% @list.tasks.each do |task| %>
+    <% if task.done %>
+      <li><%= task.description %></li>
+    <% end %>
+  <% end %>
+</ul>
+
 <p><%= link_to "Add a task", new_list_task_path(@list) %></p>
-<p><%= link_to "Edit", edit_list_path(@list) %></p>
-<p><%= link_to "Delete", list_path(@list),
+<hr>
+<p><%= link_to "Edit List", edit_list_path(@list) %></p>
+<p><%= link_to "Delete List", list_path(@list),
                           :data => {:confirm => "You sure?",
                                     :method => "delete"} %></p>
 <p><%= link_to "Return to lists", lists_path %></p>
