@@ -1,6 +1,6 @@
 <% content_for(:title, "ToDo | Lists") %>
 <h1>Lists</h1>
-
+<%= image_tag "tube-cat.jpg" %>
 <ul>
   <% @lists.each do |list| %>
     <li><%= link_to list.name, list_path(list) %></li>
