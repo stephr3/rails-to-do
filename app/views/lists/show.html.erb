@@ -14,7 +14,11 @@
 
           <%= form_for [@list, task] do |f| %>
             <%= f.hidden_field :done, :value => !task.done %>
-            <%= f.submit 'Done!' %>
+            <% if task.done %>
+              <%= f.submit 'Not Done!' %>
+            <% else %>
+              <%= f.submit 'Done!' %>
+            <% end %>
           <% end %>
       </li>
     <% end %>
